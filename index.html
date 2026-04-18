@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spicy Dinner Decider</title>
+<style>
+body{margin:0;font-family:system-ui;background:#0b1220;color:#fff}
+.container{max-width:720px;margin:auto;padding:16px}
+.card{background:#111827;border-radius:16px;padding:16px;margin-bottom:16px}
+h1{margin:0;font-size:24px}
+button{width:100%;padding:14px;font-size:16px;border:none;border-radius:12px;margin-top:10px;font-weight:700;color:#fff}
+.pick{background:#7c3aed}
+.shuffle{background:#06b6d4}
+.month{background:#f97316}
+.result{font-size:22px;margin-top:12px;font-weight:800}
+.small{color:#94a3b8;font-size:13px}
+.day{background:#0f172a;padding:10px;border-radius:10px;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🌶️ Spicy Dinner Decider</h1>
+<p class="small">Home‑only • No restaurants • No deciding</p>
+
+<div class="card">
+<button class="pick" onclick="pick()">🍽️ Pick Tonight</button>
+<button class="shuffle" onclick="shuffle()">🔀 Shuffle / Mix</button>
+<button class="month" onclick="makeMonth()">🗓️ Generate Month</button>
+<div id="out" class="result"></div>
+</div>
+
+<div class="card">
+<h3>30‑Day Plan</h3>
+<div id="monthout"></div>
+</div>
+</div>
+
+<script>
+const meals=[
+"Tacos","Spaghetti","Chicken & Rice","Stir Fry","Grilled Cheese & Soup",
+"Breakfast for Dinner","Burrito Bowls","Nachos","Chili","Sloppy Joes",
+"Sheet‑Pan Chicken & Veg","Mac & Cheese + Protein","Rice Bowls",
+"Pork Chops & Potatoes","Frozen Pizza","Rotisserie Chicken Plates",
+"Taco Salad","Pasta Alfredo","Baked Ziti","Air Fryer Wings",
+"Soup & Bread","Sandwich Night","Leftovers","Chicken Wraps",
+"Tater Tot Casserole","Fish Tacos","Enchiladas","Sausage Pasta",
+"Chicken Parmesan","Salmon & Rice"
+];
+
+function pick(){
+  document.getElementById("out").textContent =
+  meals[Math.floor(Math.random()*meals.length)];
+}
+function shuffle(){
+  meals.sort(()=>Math.random()-0.5);
+  pick();
+}
+function makeMonth(){
+  shuffle();
+  let o="";
+  for(let i=0;i<30;i++){
+    o+=`<div class="day">Day ${i+1}: ${meals[i%meals.length]}</div>`;
+  }
+  document.getElementById("monthout").innerHTML=o;
+}
+</script>
+</body>
+</html>
+``
